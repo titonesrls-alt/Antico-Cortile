@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Casa vacanze Antico Cortile - Prenotazioni</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header full-bleed-header">
+    <img src="images/logo.jpg" alt="Logo Casa vacanze Antico Cortile" class="logo" aria-hidden="false">
+    <div class="container header-row header-text-wrap">
+      <a class="brand" href="#" aria-label="Home - Casa vacanze Antico Cortile">
+        <div class="brand-text">
+          <h1 class="site-title">
+            <span class="title-line1">Casa Vacanze</span>
+            <span class="title-line2">Antico Cortile</span>
+          </h1>
+          <p class="site-subtitle" data-i18n="site.subtitle">Un angolo di relax nel cuore della città</p>
+        </div>
+      </a>
+
+      <div class="lang-switcher" aria-label="Selettore lingua">
+        <button id="lang-toggle" class="lang-toggle" aria-label="Cambia lingua" aria-haspopup="listbox" aria-expanded="false">
+          <span class="flag" id="current-flag" aria-hidden="true">🇮🇹</span>
+        </button>
+        <ul id="lang-menu" class="lang-menu" role="listbox" aria-label="Seleziona lingua">
+          <li role="option" data-lang="it" aria-selected="true"><span class="flag" aria-label="Italiano" title="Italiano">🇮🇹</span></li>
+          <li role="option" data-lang="en" aria-selected="false"><span class="flag" aria-label="English" title="English">🇬🇧</span></li>
+        </ul>
+      </div>
+    </div>
+  <nav aria-label="Sezioni principali" class="tabs tabs-in-header" role="tablist">
+      <button class="tab-btn" role="tab" aria-selected="true" data-target="structure" data-i18n="tabs.structure">Struttura</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-target="rooms" data-i18n="tabs.rooms">Stanze</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-target="checkin" data-i18n="tabs.checkin">Check-in</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-target="contacts" data-i18n="tabs.contacts">Contatti</button>
+    </nav>
+  </header>
+
+  <main class="container" id="app">
+
+    <section id="structure" class="tab-panel" data-active="true" role="tabpanel" aria-labelledby="tab-structure">
+      <article aria-labelledby="structure-heading">
+        <header>
+          <h2 id="structure-heading" data-i18n="structure.title">La nostra struttura</h2>
+          <p class="muted" data-i18n="structure.description">Placeholder: inserisci qui un testo descrittivo della struttura e della città (storia, attrazioni, servizi...)</p>
+        </header>
+
+        <section class="gallery" aria-label="Galleria della struttura">
+          <figure>
+            <img src="images/structure/structure-1.jpg" alt="Vista esterna dell'hotel - placeholder">
+            <figcaption data-i18n="structure.gallery1">Facciata e ingresso</figcaption>
+          </figure>
+          <figure>
+            <img src="images/structure/structure-2.jpg" alt="Hall e aree comuni - placeholder">
+            <figcaption data-i18n="structure.gallery2">Hall e aree comuni</figcaption>
+          </figure>
+          <figure>
+            <img src="images/structure/structure-3.jpg" alt="La città vicina - placeholder">
+            <figcaption data-i18n="structure.gallery3">Panorama della città</figcaption>
+          </figure>
+        </section>
+      </article>
+    </section>
+
+  <section id="rooms" class="tab-panel" data-active="false" role="tabpanel" aria-labelledby="tab-rooms">
+      <header>
+        <h2 data-i18n="rooms.title">Le nostre camere</h2>
+        <p class="muted" data-i18n="rooms.subtitle">Seleziona una scheda per visualizzare le foto e i dettagli.</p>
+      </header>
+
+      <section class="rooms-grid" aria-label="Seleziona una stanza">
+        <article class="room-card" data-room="ciclamino" tabindex="0" role="button" aria-pressed="false">
+          <figure>
+            <img src="images/rooms/ciclamino-1.jpg" alt="Anteprima Ciclamino">
+          </figure>
+          <div>
+            <h3 data-i18n="rooms.ciclamino">Ciclamino</h3>
+            <p class="muted" data-i18n="rooms.ciclaminoDesc">Camera matrimoniale con vista.</p>
+          </div>
+        </article>
+
+        <article class="room-card" data-room="gelsomino" tabindex="0" role="button" aria-pressed="false">
+          <figure>
+            <img src="images/rooms/gelsomino-1.jpg" alt="Anteprima Gelsomino">
+          </figure>
+          <div>
+            <h3 data-i18n="rooms.gelsomino">Gelsomino</h3>
+            <p class="muted" data-i18n="rooms.gelsominoDesc">Camera doppia confortevole.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="room-gallery" id="room-gallery" aria-live="polite">
+        <!-- gallery for selected room inserted by JS -->
+      </section>
+    </section>
+
+    <section id="checkin" class="tab-panel" data-active="false" role="tabpanel" aria-labelledby="tab-checkin">
+      <header>
+        <h2>Check-in</h2>
+        <p class="muted">Compila il form per comunicare i dati di check-in. Puoi allegare una foto o un PDF del documento d'identità.</p>
+      </header>
+      <section class="checkin-form">
+        <form id="checkinForm" enctype="multipart/form-data">
+          <div class="guest-tabs-wrap">
+            <label class="visually-hidden" for="guestsCount">Numero ospiti</label>
+            <div class="guest-tabs" role="tablist" aria-label="Numero ospiti">
+              <button type="button" class="guest-tab active" data-value="1" aria-pressed="true">1</button>
+              <button type="button" class="guest-tab" data-value="2" aria-pressed="false">2</button>
+              <button type="button" class="guest-tab" data-value="3" aria-pressed="false">3</button>
+              <button type="button" class="guest-tab" data-value="4" aria-pressed="false">4</button>
+            </div>
+            <!-- hidden field kept for form compatibility and to be read by JS -->
+            <input type="hidden" id="guestsCount" name="guests" value="1">
+          </div>
+          <div id="guestDetailsContainer">
+            <!-- guest name/surname fields will be generated here based on number of guests -->
+          </div>
+          <label class="col-left">Data check-in
+            <input type="date" name="checkin_date" required>
+          </label>
+          <label class="col-right">Data check-out
+            <input type="date" name="checkout_date" required>
+          </label>
+          <div id="attachmentsContainer" class="col-left">
+            <!-- I campi file per ogni ospite saranno generati qui in base al numero di ospiti -->
+          </div>
+          <label>Documenti aggiuntivi (opzionali)
+            <input type="file" name="additional_documents" id="additional_documents" accept="image/*,.pdf" multiple>
+          </label>
+          <p class="muted small">I file caricati saranno inviati alla mail della struttura in modo sicuro. Verifica sempre le normative privacy. Puoi caricare un documento per ogni ospite oppure usare gli "Allegati aggiuntivi".</p>
+          <button class="btn" type="submit">Invia check-in</button>
+          <p id="checkinStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </section>
+
+    <section id="contacts" class="tab-panel" data-active="false" role="tabpanel" aria-labelledby="tab-contacts">
+      <header>
+        <h2 data-i18n="contacts.title">Contatti</h2>
+      </header>
+      <address class="contact-card">
+        <strong data-i18n="contacts.name">Casa Vacanze Antico Cortile</strong><br>
+        <span data-i18n="contacts.address1">Via Francesco Angileri 32</span><br>
+        <span data-i18n="contacts.address2">91025 Marsala (TP)</span><br>
+        <a href="tel:+393312323632" data-i18n="contacts.phoneLabel">+39 331 232 3632</a><br>
+        <a href="mailto:info@antico-cortile.com" data-i18n="contacts.emailLabel">info@antico-cortile.com</a>
+      </address>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+  <small>© <span id="year"></span> <span data-i18n="footer.text">Casa vacanze Antico Cortile — Tutti i diritti riservati</span></small>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK (official CDN). Updated to the recommended jsDelivr build. -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

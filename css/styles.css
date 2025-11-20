@@ -1,0 +1,358 @@
+:root{
+    --brand-1: #0f1724; /* deep navy */
+    --accent: #ff6b6b; /* warm coral */
+    --muted: #6b7280;
+    --card: #ffffff;
+    --glass: rgba(255,255,255,0.06);
+}
+
+*{box-sizing:border-box}
+html,body{
+    height:100%;
+}
+
+/* Sticky footer layout */
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+body{
+    font-family: 'Inter', system-ui, Arial, sans-serif;
+    margin:0;
+    padding:0;
+    /* placeholder SVG come fallback: sostituisci la prima url con la tua immagine */
+    --bg-placeholder: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cdefs%3E%3Cpattern id='p' width='20' height='20' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'%3E%3Crect width='20' height='20' fill='%23f2f4f7'/%3E%3Cpath d='M0 10 H20' stroke='%23d0d5dd' stroke-width='2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E");
+    background-image: url('../images/background.jpg'), var(--bg-placeholder);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color:var(--brand-1);
+    -webkit-font-smoothing:antialiased;
+}
+
+header.site-header{
+    background: linear-gradient(90deg,var(--brand-1), #16213e);
+    color: #fff;
+    padding:0 0 20px 0;
+    box-shadow: 0 6px 18px rgba(10,20,40,0.12);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.header-row{ display:flex; align-items:center; justify-content:space-between; gap:12px }
+
+/* language switcher */
+.lang-switcher{ position:relative }
+.lang-toggle{
+    display:flex; align-items:center; gap:0;
+    background:rgba(255,255,255,0.12);
+    color:#fff; border:1px solid rgba(255,255,255,0.2);
+    padding:6px 8px; border-radius:10px; cursor:pointer;
+}
+.lang-toggle:focus{ outline:2px solid rgba(255,255,255,0.35) }
+.flag{ font-size:1.1rem }
+.lang-menu{
+    position:absolute; right:0; top:calc(100% + 18px); /* moved further down */
+    background:#fff; color:var(--brand-1);
+    list-style:none; margin:0; padding:6px; border-radius:10px;
+    box-shadow:0 10px 24px rgba(16,24,40,0.18);
+    display:none; min-width:180px;
+}
+.lang-menu[aria-hidden="false"], .lang-menu.open{ display:block }
+.lang-menu li{ padding:6px 8px; border-radius:8px; cursor:pointer; display:flex; gap:6px; align-items:center; justify-content:center }
+.lang-menu li[aria-selected="true"]{ background:rgba(16,24,40,0.06) }
+.lang-menu li:hover{ background:rgba(16,24,40,0.08) }
+/* header full-bleed: logo at viewport left, text centered inside container */
+.brand{
+    position:relative;
+    display:block;
+    text-decoration:none;
+    color:inherit;
+}
+.full-bleed-header{ position:relative }
+.logo{
+    /* increased size to match primary site */
+    width:160px;
+    height:160px;
+    object-fit:cover;
+    border-radius:10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    position:absolute;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
+}
+.header-text-wrap{ padding-left: 128px; }
+.brand-text{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    /* reserve space for larger logo (160px) */
+    max-width: calc(100% - 180px);
+    margin:0 auto;
+}
+
+@media (max-width:640px){
+    /* on small screens, revert to inline layout so logo and text stack/align nicely */
+    .header-text-wrap{ padding-left: 0 }
+    .tabs-in-header{ padding-left: 0; width: 92%; margin-top: 2px; }
+    .brand{ display:flex; gap:10px; align-items:center }
+    /* increase mobile logo size to match primary site */
+    .logo{ position:static; transform:none; width:120px; height:120px }
+    .brand-text{ text-align:left; max-width:none }
+    .site-title{ font-size:1.4rem; line-height:1.05 }
+    .site-subtitle{ font-size:0.9rem; margin-top:2px }
+}
+.site-title{
+    margin:0;
+    font-size:1.7rem;
+    letter-spacing:0.3px;
+    display:inline-block;
+    line-height:1.05;
+}
+.site-title .title-line1,
+.site-title .title-line2{ display:block; white-space:nowrap }
+.site-subtitle{
+    margin:2px 0 0 0;
+    font-size:0.92rem;
+    color: rgba(255,255,255,0.85);
+    white-space:nowrap;
+}
+
+.container{
+    width:min(1100px,92%);
+    margin:24px auto;
+}
+
+/* push footer to bottom */
+main.container{ flex:1 0 auto; }
+
+/* Tabs */
+.tabs{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin:18px 0;
+}
+.tabs-in-header{
+    margin: 2px auto 0 auto;
+    padding: 0 0 0 128px; /* ulteriore riduzione spazio logo */
+    width: min(1100px, 92%);
+}
+.tab-btn{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.6);
+    padding:10px 16px;
+    border-radius:12px;
+    cursor:pointer;
+    color:#fff;
+    font-weight:600;
+    transition: all .18s ease;
+}
+.tab-btn:hover{ background: rgba(255,255,255,0.12) }
+.tab-btn[aria-selected="true"]{
+    background:#ffffff;
+    color:#16213e;
+    border-color:#ffffff;
+    box-shadow: 0 6px 18px rgba(16,24,40,0.12);
+}
+
+/* Panels */
+.tab-panel{ display:none }
+.tab-panel[data-active="true"]{ display:block }
+
+/* Structure gallery */
+.gallery{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap:16px;
+}
+.gallery figure{
+    margin:0;
+    background:var(--card);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+}
+.gallery img{
+    display:block;
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+.gallery figcaption{
+    padding:12px 14px;
+    color:var(--muted);
+    font-size:0.95rem;
+}
+
+/* Rooms cards */
+.rooms-grid{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+.room-card{
+    flex:1 1 280px;
+    background:var(--card);
+    border-radius:14px;
+    padding:12px;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+.room-card:hover{ transform: translateY(-6px); box-shadow: 0 12px 30px rgba(16,24,40,0.08); }
+.room-card.selected{ border-color:var(--accent); box-shadow: 0 16px 40px rgba(255,107,107,0.08); }
+.room-card figure{ width:120px; height:80px; margin:0; flex-shrink:0; overflow:hidden; border-radius:8px; }
+.room-card img{ width:100%; height:100%; object-fit:cover; display:block }
+.room-card h3{ margin:0; font-size:1.05rem }
+
+.room-gallery{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+    gap:12px;
+}
+
+/* Carousel single-image view */
+.carousel{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--card);
+    padding:12px;
+    border-radius:12px;
+    justify-content:center;
+}
+.carousel figure{ margin:0; display:flex; flex-direction:column; align-items:center; }
+.carousel img{ width:100%; max-width:640px; height:auto; border-radius:8px; object-fit:cover; box-shadow: 0 12px 30px rgba(16,24,40,0.06); }
+.carousel figcaption{ margin-top:8px; color:var(--muted); font-size:0.95rem }
+.carousel-button{
+    background:transparent;
+    border:0;
+    font-size:2rem;
+    padding:6px 10px;
+    cursor:pointer;
+    color:var(--brand-1);
+    border-radius:8px;
+    transition: background .12s ease, color .12s ease;
+}
+.carousel-button:hover{ background: rgba(16,24,40,0.04); color:var(--accent) }
+.carousel-button:focus{ outline:2px solid rgba(255,107,107,0.14); }
+
+/* Contacts */
+address.contact-card{
+    background:var(--card);
+    padding:16px;
+    border-radius:10px;
+    display:block;
+    box-shadow: 0 8px 22px rgba(16,24,40,0.06);
+}
+
+/* Check-in form styles - harmonized with site look */
+.checkin-form{
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+    padding:18px;
+    border-radius:12px;
+    box-shadow: 0 12px 30px rgba(16,24,40,0.06);
+    border: 1px solid rgba(16,24,40,0.04);
+}
+.checkin-form form{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-items:start }
+.checkin-form label{ display:block; font-weight:600; color:var(--brand-1); font-size:0.95rem }
+.checkin-form input[type="text"], .checkin-form input[type="date"], .checkin-form select, .checkin-form input[type="file"], .checkin-form input[type="email"], .checkin-form input[type="tel"], .checkin-form input[type="number"]{
+    width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(16,24,40,0.06); background: #fff; box-shadow:none; font-size:0.95rem;
+}
+.checkin-form .muted.small{ grid-column:1/-1; color:var(--muted); font-size:0.85rem }
+.checkin-form .btn{ grid-column:1/-1; justify-self:start; padding:10px 18px; background:var(--accent); color:#fff; border:none; border-radius:10px; cursor:pointer; font-weight:700 }
+
+/* Guest tabs UI */
+.guest-tabs-wrap{ grid-column:1/-1; display:flex; align-items:center; gap:12px; margin-bottom:6px }
+.guest-tabs{ display:flex; gap:8px }
+.guest-tab{ background:transparent; border:1px solid rgba(16,24,40,0.06); padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:700; color:var(--brand-1) }
+.guest-tab.active, .guest-tab[aria-pressed="true"]{ background:var(--accent); color:#fff; border-color:var(--accent); box-shadow: 0 8px 20px rgba(255,107,107,0.12) }
+
+/* Guest form rows */
+.guest-row{ display:flex; gap:8px; align-items:center }
+.guest-row label{ font-weight:600 }
+.guest-file-row{ grid-column:1/-1; display:flex; gap:12px; align-items:center; margin-top:6px }
+.guest-file-row input[type="file"]{ display:inline-block }
+.guest-file-name{ font-size:0.9rem; color:var(--muted) }
+
+/* Grid placement helpers for check-in form */
+.checkin-form .col-left{ grid-column: 1 / 2 }
+.checkin-form .col-right{ grid-column: 2 / 3 }
+
+/* make the form single-column on small screens */
+@media (max-width:640px){
+    .checkin-form form{ grid-template-columns: 1fr; }
+    .guest-row{ flex-direction:column; align-items:stretch }
+    .guest-file-row{ flex-direction:column; align-items:flex-start }
+    .guest-tabs-wrap{ justify-content:flex-start }
+}
+
+footer.site-footer{
+    text-align:center;
+    /* reduced vertical padding for a slimmer footer */
+    padding:9px 0;
+    margin-top:28px;
+    background: linear-gradient(90deg,var(--brand-1), #16213e);
+    color:#fff;
+}
+
+/* Force contact card and footer widths to stay in place */
+address.contact-card, footer.site-footer .container{
+    width:1100px; max-width:1100px; margin:0 auto;
+    /* match reduced footer padding */
+    padding:9px 0;
+}
+
+/* Responsive tweaks */
+@media (max-width:640px){
+    .site-title{ font-size:1.2rem }
+    .room-card{ align-items:flex-start }
+    .room-card figure{ width:110px; height:70px }
+    .carousel img{ max-width:100%; }
+}
+
+/* Mobile improvements: reduce heavy visuals, improve touch targets and form layout */
+@media (max-width:640px){
+    /* avoid fixed background on mobile for performance and layout issues */
+    body{ background-attachment: scroll; background-position: top; }
+
+    /* header / logo adjustments */
+    .logo{ width:96px; height:96px; }
+    .header-text-wrap{ padding-left: 0; }
+    .tabs-in-header{ padding: 0 8px 0 8px; width: 100%; }
+
+    /* tabs / nav adjustments: allow wrapping and scrolling */
+    .tabs{ gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px }
+    .tab-btn{ padding:8px 12px; font-size:0.95rem }
+
+    /* guest-tabs: make them touch-friendly and horizontally scrollable */
+    .guest-tabs{ overflow-x:auto; -webkit-overflow-scrolling:touch; gap:6px; padding:6px 2px }
+    .guest-tab{ min-width:54px; padding:10px 14px; font-size:1rem }
+
+    /* make checkin form single column and inputs full width */
+    .checkin-form form{ grid-template-columns: 1fr; gap:12px }
+    .checkin-form .col-left, .checkin-form .col-right{ grid-column:1/-1 }
+    .checkin-form .btn{ width:100%; justify-self:stretch }
+
+    /* ensure guest rows stack neatly */
+    .guest-row{ flex-direction:column; align-items:stretch }
+    .guest-row label{ width:100% }
+    .guest-file-row{ flex-direction:column; align-items:flex-start }
+    .guest-file-row input[type="file"]{ width:100% }
+
+    /* reduce heavy shadows for mobile */
+    .checkin-form{ box-shadow: none; border: 1px solid rgba(16,24,40,0.03); }
+
+    /* footer width and contact card full width */
+    address.contact-card, footer.site-footer .container{ width:100%; max-width:100%; padding:12px }
+}
